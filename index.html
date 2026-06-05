@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karthikk Cafe — Drink & Be Drowned in Bliss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Particle canvas background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Nav -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <span class="logo-icon">☕</span>
+      <span class="logo-text">Karthikk</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#delivery">Delivery</a></li>
+      <li><a href="#reserve">Reserve</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta" onclick="scrollToSection('reserve')">Book a Table</button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">Est. Since Always</div>
+      <h1 class="hero-title">
+        <span class="title-line" data-text="Karthikk">Karthikk</span>
+        <span class="title-line italic" data-text="Cafe">Cafe</span>
+      </h1>
+      <p class="hero-motto">Drink & Be Drowned in Bliss</p>
+      <p class="hero-sub">Where every sip is a story, and every moment an escape from the ordinary.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToSection('menu')">Explore Menu</button>
+        <button class="btn-secondary" onclick="scrollToSection('reserve')">Reserve a Seat</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-target="48">0</span><span class="stat-label">Signature Blends</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="12">0</span><span class="stat-label">Cozy Rooms</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="99">0</span><span class="stat-label">% Bliss Rate</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="cup-container">
+        <div class="cup-glow"></div>
+        <div class="steam-container">
+          <div class="steam s1"></div>
+          <div class="steam s2"></div>
+          <div class="steam s3"></div>
+        </div>
+        <div class="coffee-cup">
+          <div class="cup-body">
+            <div class="liquid">
+              <div class="liquid-surface"></div>
+              <div class="bubble b1"></div>
+              <div class="bubble b2"></div>
+              <div class="bubble b3"></div>
+            </div>
+          </div>
+          <div class="cup-handle"></div>
+          <div class="saucer"></div>
+        </div>
+        <div class="orbit-ring r1"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring r2"><div class="orbit-dot"></div></div>
+        <div class="float-badge fb1">Arabica Blend</div>
+        <div class="float-badge fb2">Fresh Roast</div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <span class="section-tag">Our Offerings</span>
+      <h2 class="section-title">The <em>Sacred</em> Menu</h2>
+      <p class="section-sub">Hand-crafted with love. Served with soul. Every cup tells a tale.</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="hot">Hot Coffees</button>
+      <button class="tab" data-filter="cold">Cold Brews</button>
+      <button class="tab" data-filter="specialty">Specialty</button>
+      <button class="tab" data-filter="snacks">Snacks</button>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <!-- Hot Coffees -->
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">☕</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Midnight Espresso</h3>
+        <p>Pure darkness. Double shot, velvety crema, zero forgiveness.</p>
+        <div class="card-footer">
+          <span class="price">$4.50</span>
+          <button class="add-btn" onclick="addToCart('Midnight Espresso', 4.50)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🌊</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Velvet Americano</h3>
+        <p>Espresso stretched with hot water into silky, bold perfection.</p>
+        <div class="card-footer">
+          <span class="price">$5.00</span>
+          <button class="add-btn" onclick="addToCart('Velvet Americano', 5.00)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🥛</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Bliss Latte</h3>
+        <p>Steamed milk kissed with espresso. A warm hug in a cup.</p>
+        <div class="card-footer">
+          <span class="price">$6.25</span>
+          <button class="add-btn" onclick="addToCart('Bliss Latte', 6.25)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🍫</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Dark Mocha</h3>
+        <p>Espresso, Belgian dark chocolate, whipped cream. Sinfully rich.</p>
+        <div class="card-footer">
+          <span class="price">$6.75</span>
+          <button class="add-btn" onclick="addToCart('Dark Mocha', 6.75)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🌿</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Emerald Matcha Latte</h3>
+        <p>Ceremonial grade matcha, oat milk, gentle sweetness.</p>
+        <div class="card-footer">
+          <span class="price">$6.50</span>
+          <button class="add-btn" onclick="addToCart('Emerald Matcha Latte', 6.50)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="hot">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🔥</div>
+        <div class="card-badge hot">Hot</div>
+        <h3>Phoenix Flat White</h3>
+        <p>Ristretto shots, microfoam milk. Intense and unyielding.</p>
+        <div class="card-footer">
+          <span class="price">$5.75</span>
+          <button class="add-btn" onclick="addToCart('Phoenix Flat White', 5.75)">+</button>
+        </div>
+      </div>
+
+      <!-- Cold Brews -->
+      <div class="menu-card" data-category="cold">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🧊</div>
+        <div class="card-badge cold">Cold</div>
+        <h3>Midnight Cold Brew</h3>
+        <p>18-hour steeped. Black as night, smooth as jazz.</p>
+        <div class="card-footer">
+          <span class="price">$5.50</span>
+          <button class="add-btn" onclick="addToCart('Midnight Cold Brew', 5.50)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="cold">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🌌</div>
+        <div class="card-badge cold">Cold</div>
+        <h3>Galaxy Iced Latte</h3>
+        <p>Butterfly pea flower cold brew, vanilla, shimmering layers.</p>
+        <div class="card-footer">
+          <span class="price">$7.25</span>
+          <button class="add-btn" onclick="addToCart('Galaxy Iced Latte', 7.25)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="cold">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🍦</div>
+        <div class="card-badge cold">Cold</div>
+        <h3>Affogato Frost</h3>
+        <p>Vanilla gelato drowned in hot espresso. A temperature war.</p>
+        <div class="card-footer">
+          <span class="price">$8.00</span>
+          <button class="add-btn" onclick="addToCart('Affogato Frost', 8.00)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="cold">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🥥</div>
+        <div class="card-badge cold">Cold</div>
+        <h3>Coconut Dream</h3>
+        <p>Cold brew, coconut cream, caramel ribbons. Tropical escape.</p>
+        <div class="card-footer">
+          <span class="price">$7.50</span>
+          <button class="add-btn" onclick="addToCart('Coconut Dream', 7.50)">+</button>
+        </div>
+      </div>
+
+      <!-- Specialty -->
+      <div class="menu-card featured" data-category="specialty">
+        <div class="card-glow"></div>
+        <div class="card-emoji">⭐</div>
+        <div class="card-badge specialty">Signature</div>
+        <div class="bestseller-tag">Bestseller</div>
+        <h3>Karthikk's Bliss</h3>
+        <p>House blend espresso, rose water, cardamom, saffron foam. The soul of the cafe.</p>
+        <div class="card-footer">
+          <span class="price">$9.50</span>
+          <button class="add-btn" onclick="addToCart('Karthikk\'s Bliss', 9.50)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="specialty">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🌹</div>
+        <div class="card-badge specialty">Signature</div>
+        <h3>Rosé Sunset</h3>
+        <p>Pink rose latte with dried petals, honey, and oat milk.</p>
+        <div class="card-footer">
+          <span class="price">$8.75</span>
+          <button class="add-btn" onclick="addToCart('Rosé Sunset', 8.75)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="specialty">
+        <div class="card-glow"></div>
+        <div class="card-emoji">✨</div>
+        <div class="card-badge specialty">Signature</div>
+        <h3>Golden Turmeric Elixir</h3>
+        <p>Turmeric, ginger, honey, almond milk, dusted with star anise.</p>
+        <div class="card-footer">
+          <span class="price">$7.75</span>
+          <button class="add-btn" onclick="addToCart('Golden Turmeric Elixir', 7.75)">+</button>
+        </div>
+      </div>
+
+      <!-- Snacks -->
+      <div class="menu-card" data-category="snacks">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🥐</div>
+        <div class="card-badge snack">Snack</div>
+        <h3>Butter Croissant</h3>
+        <p>Freshly baked, 72-hour laminated dough. Shatters perfectly.</p>
+        <div class="card-footer">
+          <span class="price">$4.00</span>
+          <button class="add-btn" onclick="addToCart('Butter Croissant', 4.00)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="snacks">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🍰</div>
+        <div class="card-badge snack">Snack</div>
+        <h3>Tiramisu Slice</h3>
+        <p>Classic Italian, espresso soaked, mascarpone cloud, cocoa veil.</p>
+        <div class="card-footer">
+          <span class="price">$6.00</span>
+          <button class="add-btn" onclick="addToCart('Tiramisu Slice', 6.00)">+</button>
+        </div>
+      </div>
+
+      <div class="menu-card" data-category="snacks">
+        <div class="card-glow"></div>
+        <div class="card-emoji">🍩</div>
+        <div class="card-badge snack">Snack</div>
+        <h3>Glazed Coffee Donut</h3>
+        <p>Espresso-glazed ring of joy. Soft, airy, addictive.</p>
+        <div class="card-footer">
+          <span class="price">$3.50</span>
+          <button class="add-btn" onclick="addToCart('Glazed Coffee Donut', 3.50)">+</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Delivery Section -->
+  <section class="delivery-section" id="delivery">
+    <div class="delivery-bg-text">DELIVER</div>
+    <div class="section-header">
+      <span class="section-tag">Home Delivery</span>
+      <h2 class="section-title">Bliss at Your <em>Doorstep</em></h2>
+      <p class="section-sub">Can't make it in? We'll bring the magic to you.</p>
+    </div>
+
+    <div class="delivery-cards">
+      <div class="delivery-card">
+        <div class="delivery-icon">🏠</div>
+        <h3>Standard Delivery</h3>
+        <p>Within 5km radius. Est. 30–45 mins.</p>
+        <div class="delivery-price">+$2.99</div>
+        <ul>
+          <li>✓ Hot & fresh packaging</li>
+          <li>✓ Live tracking</li>
+          <li>✓ Eco-friendly cups</li>
+        </ul>
+      </div>
+      <div class="delivery-card featured-delivery">
+        <div class="delivery-icon">⚡</div>
+        <div class="popular-badge">Most Popular</div>
+        <h3>Express Delivery</h3>
+        <p>Within 8km radius. Est. 15–25 mins.</p>
+        <div class="delivery-price">+$4.99</div>
+        <ul>
+          <li>✓ Priority brewing</li>
+          <li>✓ Temperature sealed</li>
+          <li>✓ Real-time updates</li>
+          <li>✓ Free cookie included</li>
+        </ul>
+      </div>
+      <div class="delivery-card">
+        <div class="delivery-icon">🎁</div>
+        <h3>Gift Delivery</h3>
+        <p>Send bliss to someone. Any location.</p>
+        <div class="delivery-price">+$6.99</div>
+        <ul>
+          <li>✓ Gift wrapped</li>
+          <li>✓ Personal note card</li>
+          <li>✓ Surprise packaging</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="delivery-note">
+      <span>🚫</span> Orders below $15 include a small handling fee of $1.50. Free delivery on orders above $30!
+    </div>
+
+    <!-- Order Form -->
+    <div class="order-panel" id="orderPanel">
+      <div class="cart-summary" id="cartSummary">
+        <h3>🛒 Your Order</h3>
+        <div class="cart-items" id="cartItems">
+          <p class="empty-cart">Your cart is empty. Add items from the menu!</p>
+        </div>
+        <div class="cart-totals" id="cartTotals" style="display:none;">
+          <div class="total-row"><span>Subtotal</span><span id="cartSubtotal">$0.00</span></div>
+          <div class="total-row"><span>Delivery Fee</span><span id="deliveryFee">$0.00</span></div>
+          <div class="total-row grand"><span>Total</span><span id="cartTotal">$0.00</span></div>
+          <div class="delivery-type-select">
+            <label>Delivery Type:</label>
+            <select id="deliveryType" onchange="updateDeliveryFee()">
+              <option value="0">Dine-in (No fee)</option>
+              <option value="2.99">Standard Delivery (+$2.99)</option>
+              <option value="4.99">Express Delivery (+$4.99)</option>
+              <option value="6.99">Gift Delivery (+$6.99)</option>
+            </select>
+          </div>
+          <button class="btn-primary full-width" onclick="placeOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservations Section -->
+  <section class="reserve-section" id="reserve">
+    <div class="section-header">
+      <span class="section-tag">Private Events</span>
+      <h2 class="section-title">Reserve Your <em>Moment</em></h2>
+      <p class="section-sub">Celebrate the big and small — birthdays, anniversaries, or just a Friday that deserves champagne.</p>
+    </div>
+
+    <div class="event-types">
+      <div class="event-card" onclick="selectEvent(this, 'Birthday Bash')">
+        <div class="event-icon">🎂</div>
+        <h3>Birthday Bash</h3>
+        <p>Exclusive seating, custom cake, decorated table, party playlist.</p>
+        <div class="event-price">From $120</div>
+        <div class="event-features">
+          <span>Up to 20 guests</span>
+          <span>3-hour slot</span>
+          <span>Custom menu</span>
+        </div>
+      </div>
+      <div class="event-card" onclick="selectEvent(this, 'Celebration Package')">
+        <div class="event-icon">🥂</div>
+        <h3>Celebration Package</h3>
+        <p>Anniversary, promotion, achievement — your reason, our stage.</p>
+        <div class="event-price">From $90</div>
+        <div class="event-features">
+          <span>Up to 12 guests</span>
+          <span>2-hour slot</span>
+          <span>Sparkling mocktails</span>
+        </div>
+      </div>
+      <div class="event-card" onclick="selectEvent(this, 'Private Party')">
+        <div class="event-icon">🎉</div>
+        <h3>Private Party</h3>
+        <p>Full room buyout, DJ setup available, custom decor, open bar package.</p>
+        <div class="event-price">From $250</div>
+        <div class="event-features">
+          <span>Up to 50 guests</span>
+          <span>5-hour slot</span>
+          <span>DJ + Decor</span>
+        </div>
+      </div>
+      <div class="event-card" onclick="selectEvent(this, 'Intimate Gathering')">
+        <div class="event-icon">✨</div>
+        <h3>Intimate Gathering</h3>
+        <p>A cozy corner for two to ten. Perfect for proposals and quiet magic.</p>
+        <div class="event-price">From $55</div>
+        <div class="event-features">
+          <span>Up to 10 guests</span>
+          <span>2-hour slot</span>
+          <span>Rose decor</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reservation-form-wrapper">
+      <div class="form-glow"></div>
+      <form class="reservation-form" id="reservationForm" onsubmit="submitReservation(event)">
+        <h3>Book Your Event</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name" required/>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+1 000 000 0000" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Event Type</label>
+            <input type="text" id="eventTypeInput" placeholder="Select from above" readonly/>
+          </div>
+          <div class="form-group">
+            <label>Number of Guests</label>
+            <input type="number" min="2" max="50" placeholder="E.g. 15" required/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date</label>
+            <input type="date" required/>
+          </div>
+          <div class="form-group">
+            <label>Time Slot</label>
+            <select required>
+              <option value="">Choose a time</option>
+              <option>9:00 AM – 12:00 PM</option>
+              <option>12:00 PM – 3:00 PM</option>
+              <option>3:00 PM – 6:00 PM</option>
+              <option>6:00 PM – 9:00 PM</option>
+              <option>7:00 PM – 12:00 AM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group full">
+          <label>Special Requests</label>
+          <textarea placeholder="Dietary needs, decorations, theme, surprises..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary full-width">Confirm Reservation ✨</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Ambience Section -->
+  <section class="ambience-section">
+    <div class="ambience-content">
+      <span class="section-tag">The Vibe</span>
+      <h2>Where Darkness Meets <em>Colour</em></h2>
+      <p>Low light. Warm glow. The smell of fresh roast filling the air. This is where time slows down and every sip becomes a ritual.</p>
+      <div class="ambience-features">
+        <div class="amb-feat"><span>🎵</span> Live Jazz Fridays</div>
+        <div class="amb-feat"><span>📚</span> Reading Nooks</div>
+        <div class="amb-feat"><span>🕯️</span> Candle-lit Tables</div>
+        <div class="amb-feat"><span>🌙</span> Open Until Midnight</div>
+      </div>
+    </div>
+    <div class="ambience-visual">
+      <div class="neon-sign">KARTHIKK CAFE</div>
+      <div class="neon-sub">☕ DRINK & BE DROWNED IN BLISS ☕</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag">Find Us</span>
+        <h2>Come In for a <em>Cup</em></h2>
+        <div class="contact-details">
+          <div class="contact-item"><span>📍</span><div><strong>Location</strong><p>42 Bliss Street, The Coffee Quarter</p></div></div>
+          <div class="contact-item"><span>🕐</span><div><strong>Hours</strong><p>Mon–Thu: 7AM – 11PM<br/>Fri–Sun: 7AM – Midnight</p></div></div>
+          <div class="contact-item"><span>📞</span><div><strong>Phone</strong><p>+1 (800) KARTHIKK</p></div></div>
+          <div class="contact-item"><span>📧</span><div><strong>Email</strong><p>hello@karthikkcafe.com</p></div></div>
+        </div>
+      </div>
+      <div class="social-panel">
+        <h3>Follow the Bliss</h3>
+        <div class="social-links">
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">Facebook</a>
+          <a href="#" class="social-link">Twitter / X</a>
+          <a href="#" class="social-link">TikTok</a>
+        </div>
+        <div class="newsletter">
+          <p>Get weekly specials in your inbox</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="your@email.com"/>
+            <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">
+      <span class="logo-icon">☕</span>
+      <span class="logo-text">Karthikk Cafe</span>
+    </div>
+    <p class="footer-motto">"Drink & Be Drowned in Bliss"</p>
+    <p class="footer-copy">© 2025 Karthikk Cafe. All Rights Reserved. Made with ☕ and soul.</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Order Success Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-icon">☕</div>
+      <h3 id="modalTitle">Order Placed!</h3>
+      <p id="modalMessage">Your bliss is on its way!</p>
+      <button class="btn-primary" onclick="closeModal()">Perfect!</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
